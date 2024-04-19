@@ -91,9 +91,12 @@ postfix[j]='\0';
 }
 
    int main(){
+    printf("enter the infix expr\n");
     scanf("%s",infix);
     infix_to_posfix();
+    printf("The infix expr is :");
     display();
+    printf("\n");
    
 }
        
