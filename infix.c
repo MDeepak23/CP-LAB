@@ -19,23 +19,31 @@ void display()
 }
 void push(char x)
 {  
-      char k;
+     
       if(top == max-1)
       printf("stack is over flow\n");
       else{
       printf("enter the elements that store on a stack\n");
-      scanf("%c",&k);
-      stack[top]=k;
-      top++;
+     
+       top++;
+      stack[top]=x;
+     
 }
 }
 char pop()
 {
    
-   if(top == -1)
-   printf("stack is under flow\n");
-   else 
-    return stack[top--];
+   if(top == -1){
+   printf("stack is under flow\n");}
+   else{
+   int temp;
+   temp=stack[top];
+   top--;
+   return temp;
+   } 
+   
+   
+    
 }
 int precedence(char x)
 {
@@ -56,19 +64,20 @@ void infix_to_posfix()
    sym = infix[i];
    if(sym >= 0 && sym <=9 || sym >= 'a' && sym <= 'z' || sym >='A' && sym <='Z')
    {
-      postfix[j++]=next;
+      postfix[j++]=sym;
    }
-   else if(sym == '(')
-   push(sym);
+   else if(sym == '('){
+   push(sym);}
    else if(sym == ')')
    {
      while((next = pop())!= '('){
-     pop(sym);
+     postfix[j++]=next;
+     
    }
    }
    else if(sym == '+' || sym == '-' || sym == '*' || sym == '/')
    {
-     while(top==-1 && precedence(stack[top]) >= precedence(sym))
+     while(top!=-1 && precedence(stack[top]) >= precedence(sym))
      {
        postfix[j++]=pop();
        push(sym);
@@ -76,19 +85,18 @@ void infix_to_posfix()
    }
     else 
    {
-      while(top!=-1)
+      while(top!=-1) {
       postfix[j++]=pop();
+      top--;
    }
 }
 }
+postfix[j]='\0';
+}
    int main(){
-    scanf("%s",&infix);
+    scanf("%s",infix);
+    infix_to_posfix();
     display();
    
 }
-       
-   
-   
-   
-   
-			
+      
