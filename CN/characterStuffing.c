@@ -1,3 +1,8 @@
+// CN 1st program character stuffing
+// deepak
+// p
+// n
+// o/p pdeeppakn
 #include <stdio.h>
 #include <string.h>
 int main() {
